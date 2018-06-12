@@ -9,6 +9,7 @@ public:
 	Robot(string name_);
 	vector<int> select_max();
 	string get_name();
+	int get_score();
 	int select_by_max(vector<int> s);
 	int* read_history();
 	void update_history(int res);

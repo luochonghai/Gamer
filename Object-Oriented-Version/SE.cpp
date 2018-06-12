@@ -36,6 +36,9 @@ void SE::goBarButtonFuc()
 	player->make_choice(1);
 	robotsChoose();
 	if (controller->calculate()) {
+		//newly added
+		controller->record_headcount();
+
 		player->update_history(0);
 		player->update_score();
 		for (int i = 0; i < RB_LEN; i++) {
@@ -69,6 +72,9 @@ void SE::stayHomeButtonFuc()
 	player->make_choice(0);
 	robotsChoose();
 	if (controller->calculate()) {
+		//newly added
+		controller->record_headcount();
+
 		player->update_history(0);
 		player->update_score();
 		for (int i = 0; i < RB_LEN; i++) {
@@ -99,6 +105,9 @@ void SE::stayHomeButtonFuc()
 
 void SE::changeStatus()
 {
+	//newly added
+	headcount_chart(controller,player,computer);
+
 	for (int i = 0; i < MW_LEN; i++)
 	{
 		model->setItem(0, i, new QStandardItem(to_string(player->read_hostory()[i]).data()));

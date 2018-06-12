@@ -14,6 +14,7 @@ public:
 	void update_history(int res);
 	int* read_hostory();
 	void make_choice(int choice);
+	int get_score();
 
 private:
 	/*name: */

@@ -43,3 +43,8 @@ void Player::make_choice(int choice)
 {
 	history[0] = choice;
 }
+
+int Player::get_score()
+{
+	return score;
+}

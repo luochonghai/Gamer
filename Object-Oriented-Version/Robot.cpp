@@ -91,3 +91,8 @@ int Robot::make_choice_by_strategy(int strategy_num)
 {
 	return strategy[strategy_num][two2ten(history + 1)];
 }
+
+int Robot::get_score()
+{
+	return score;
+}

@@ -3,7 +3,11 @@
 
 using namespace std;
 
-Controller::Controller() :bar_num(0), home_num(0) {}
+Controller::Controller() :bar_num(0), home_num(0) 
+{
+	for (int i = 0; i < MW_LEN; ++i)
+		chart[i] = 0;
+}
 
 bool Controller::calculate()
 {
@@ -23,4 +27,16 @@ void Controller::add_bar()
 void Controller::add_home() 
 {
 	home_num++;
+}
+
+void Controller::record_headcount()
+{
+	for (int i = MW_LEN - 2; i >= 0; --i)
+		chart[i + 1] = chart[i];
+	chart[0] = bar_num;
+}
+
+int* Controller::get_chart()
+{
+	return chart;
 }

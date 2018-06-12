@@ -10,8 +10,11 @@ public:
 	void reset();
 	void add_bar();
 	void add_home();
+	void record_headcount();
+	int* get_chart();
 
 private:
 	int bar_num;
 	int home_num;
+	int chart[MW_LEN];
 };
