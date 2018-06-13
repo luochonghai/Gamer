@@ -1,6 +1,7 @@
 #pragma execution_character_set("utf-8")
 #include "SE.h"
 #include <QMessageBox>
+#include<qpixmap.h>
 
 SE::SE(QWidget *parent)
 	: QMainWindow(parent)
@@ -17,6 +18,11 @@ SE::SE(QWidget *parent)
 	ui.horizontalLayoutWidget_2->hide();
 	ui.horizontalLayoutWidget_3->hide();
 	ui.continueButton->hide();
+
+	//newly added
+	ui.image1->hide();
+	ui.image2->hide();
+
 	model = new QStandardItemModel();
 	ui.tableView->setModel(model);
 	model->setColumnCount(MW_LEN);
@@ -119,6 +125,11 @@ void SE::changeStatus()
 			model->setItem(i, j, new QStandardItem(to_string(computer[i - 1]->read_history()[j]).data()));
 			model->item(i, j)->setTextAlignment(Qt::AlignCenter);
 		}
+	QPixmap p1("Resources/capital.jpg"),p2("Resources/headcount.jpg");
+	ui.image1->setPixmap(p1);
+	ui.image2->setPixmap(p2);
+	ui.image1->show();
+	ui.image2->show();
 	ui.horizontalLayoutWidget->hide();
 	ui.continueButton->show();
 	ui.tableView->show();
@@ -157,6 +168,8 @@ void SE::robotsChoose()
 
 void SE::continueButtonFuc()
 {
+	ui.image1->hide();
+	ui.image2->hide();
 	ui.tableView->hide();
 	ui.verticalLayoutWidget->hide();
 	ui.continueButton->hide();

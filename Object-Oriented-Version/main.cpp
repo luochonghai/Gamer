@@ -1,3 +1,4 @@
+#pragma comment(linker,"/subsystem:\"windows\" /entry:\"mainCRTStartup\"")//²»ÏÔÊ¾´°¿Ú
 #include "stdafx.h"
 #include "SE.h"
 #include <QtWidgets/QApplication>

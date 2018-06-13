@@ -1,6 +1,7 @@
 import matplotlib.pyplot as plt
 import numpy as np
 import os
+import cv2
 
 def draw_headcount(file_path):
 	#read data from .txt
@@ -16,6 +17,7 @@ def draw_headcount(file_path):
 		y1[i] = temp
 	x = [i for i in range(8)]
 
+	plt.figure(figsize = (3.2,2.4))
 	#create a chart
 	plt.plot(x,y1)
 	plt.title('headcount_chart')
@@ -55,6 +57,17 @@ def draw_capital(file_path):
 
 	plt.savefig("C:\\Users\\tjqqd\\Documents\\Visual Studio 2017\\Projects\\test\\test\\Resources\\capital.jpg")
 	plt.close()
+
+	img = cv2.imread("C:\\Users\\tjqqd\\Documents\\Visual Studio 2017\\Projects\\test\\test\\Resources\\capital.jpg")
+	imgInfo = img.shape
+	height = imgInfo[0]
+	width = imgInfo[1]
+	mode = imgInfo[2]
+	dstHeight = int(height/2)
+	dstWidth = int(width/2)
+
+	dst = cv2.resize(img,(dstWidth,dstHeight))
+	cv2.imwrite("C:\\Users\\tjqqd\\Documents\\Visual Studio 2017\\Projects\\test\\test\\Resources\\capital.jpg",dst)
 
 def like_main():
 	draw_headcount('D:\\FDU\\Template\\CS\\software_engineering\\pj\\headcount.txt')
