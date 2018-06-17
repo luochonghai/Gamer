@@ -17,6 +17,7 @@ public:
 	void update_weight(int res);
 	void make_choice(int choice);
 	int make_choice_by_strategy(int strategy_num);
+	void update(int);
 
 private:
 	string name;

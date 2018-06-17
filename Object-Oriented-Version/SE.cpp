@@ -48,9 +48,10 @@ void SE::goBarButtonFuc()
 		player->update_history(0);
 		player->update_score();
 		for (int i = 0; i < RB_LEN; i++) {
-			computer[i]->update_weight(1);
-			computer[i]->update_history(0);
-			computer[i]->update_score();
+			computer[i]->update(1);
+			//computer[i]->update_weight(1);
+			//computer[i]->update_history(0);
+			//computer[i]->update_score();
 		}
 		QMessageBox::about(this, tr("恭喜"), tr("您在本局去酒吧获胜"));
 		ui.score_label->setNum(ui.score_label->text().toInt() + 1);
@@ -59,9 +60,10 @@ void SE::goBarButtonFuc()
 		player->update_history(1);
 		player->update_score();
 		for (int i = 0; i < RB_LEN; i++) {
-			computer[i]->update_weight(0);
-			computer[i]->update_history(1);
-			computer[i]->update_score();
+			computer[i]->update(0);
+			//computer[i]->update_weight(0);
+			//computer[i]->update_history(1);
+			//computer[i]->update_score();
 		}
 		QMessageBox::about(this, tr("遗憾"), tr("您在本局去酒吧失败"));
 	}

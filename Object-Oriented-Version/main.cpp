@@ -5,7 +5,7 @@
 
 int main(int argc, char *argv[])
 {
-	Py_Initialize();
+	//Py_Initialize();
 	QApplication a(argc, argv);
 	SE w;
 	w.show();

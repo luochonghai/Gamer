@@ -1,14 +1,15 @@
+#-*- coding:utf-8 -*-
 import matplotlib.pyplot as plt
-import numpy as np
-import os
-import cv2
+import ctypes
+import sys,os
+from PIL import Image
 
 def draw_headcount(file_path):
 	#read data from .txt
 	del_name = "C:\\Users\\tjqqd\\Documents\\Visual Studio 2017\\Projects\\test\\test\\Resources\\headcount.jpg"
 	if os.path.exists(del_name):
 		os.remove(del_name)
-	file = open(file_path)
+	file = open(file_path,'r')
 	str = file.readline()
 	y1 = str.split()
 	for i in range(4):
@@ -24,7 +25,7 @@ def draw_headcount(file_path):
 	plt.ylabel('Headcount at the bar')
 	plt.xlabel('Iteration time')
 	#save chart
-	plt.savefig("C:\\Users\\tjqqd\\Documents\\Visual Studio 2017\\Projects\\test\\test\\Resources\\headcount.jpg")
+	plt.savefig(del_name)
 	plt.close()
 
 def draw_capital(file_path):
@@ -55,23 +56,29 @@ def draw_capital(file_path):
 	plt.xlabel('Iteration time')
 	plt.ylabel('Agent capital')
 
-	plt.savefig("C:\\Users\\tjqqd\\Documents\\Visual Studio 2017\\Projects\\test\\test\\Resources\\capital.jpg")
+	plt.savefig(del_name)
 	plt.close()
 
-	img = cv2.imread("C:\\Users\\tjqqd\\Documents\\Visual Studio 2017\\Projects\\test\\test\\Resources\\capital.jpg")
-	imgInfo = img.shape
-	height = imgInfo[0]
-	width = imgInfo[1]
-	mode = imgInfo[2]
-	dstHeight = int(height/2)
-	dstWidth = int(width/2)
-
-	dst = cv2.resize(img,(dstWidth,dstHeight))
-	cv2.imwrite("C:\\Users\\tjqqd\\Documents\\Visual Studio 2017\\Projects\\test\\test\\Resources\\capital.jpg",dst)
+	img = Image.open(del_name)
+	(x,y) = img.size
+	x_s = int(x/2)
+	y_s = int(y/2)
+	out = img.resize((x_s,y_s),Image.ANTIALIAS)
+	out.save(del_name)
 
 def like_main():
-	draw_headcount('D:\\FDU\\Template\\CS\\software_engineering\\pj\\headcount.txt')
-	draw_capital('D:\\FDU\\Template\\CS\\software_engineering\\pj\\capital.txt')
+	draw_headcount('C:\\Users\\tjqqd\\Documents\\Visual Studio 2017\\Projects\\test\\test\\headcount.txt')
+	draw_capital('C:\\Users\\tjqqd\\Documents\\Visual Studio 2017\\Projects\\test\\test\\capital.txt')
+	if getattr(sys,'frozen',False):
+		ctypes.windll.kernel32.SetDllDirectoryW('C:\\Users\\tjqqd\\AppData\\Roaming\\pyinstaller\\bincache00_py36_64bit')  
+		# Init code to load external dll  
+		ctypes.CDLL('mkl_avx2.dll')  
+		ctypes.CDLL('mkl_def.dll')  
+		ctypes.CDLL('mkl_vml_avx2.dll')  
+		ctypes.CDLL('mkl_vml_def.dll')  
+		
+		# Restore dll search path.  
+		ctypes.windll.kernel32.SetDllDirectoryW(sys._MEIPASS)  
 
 
 if __name__ == '__main__':

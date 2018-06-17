@@ -96,3 +96,10 @@ int Robot::get_score()
 {
 	return score;
 }
+
+void Robot::update(int signal)
+{
+	update_weight(signal);
+	update_history(1 - signal);
+	update_score();
+}
