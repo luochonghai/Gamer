@@ -1,12 +1,13 @@
 #-*- coding:utf-8 -*-
 import matplotlib.pyplot as plt
-import ctypes
-import sys,os
+#import ctypes
+#import sys
+import os
 from PIL import Image
 
 def draw_headcount(file_path):
 	#read data from .txt
-	del_name = "C:\\Users\\tjqqd\\Documents\\Visual Studio 2017\\Projects\\test\\test\\Resources\\headcount.jpg"
+	del_name = ".\\Resources\\headcount.jpg"
 	if os.path.exists(del_name):
 		os.remove(del_name)
 	file = open(file_path,'r')
@@ -29,7 +30,7 @@ def draw_headcount(file_path):
 	plt.close()
 
 def draw_capital(file_path):
-	del_name = "C:\\Users\\tjqqd\\Documents\\Visual Studio 2017\\Projects\\test\\test\\Resources\\capital.jpg"
+	del_name = ".\\Resources\\capital.jpg"
 	if os.path.exists(del_name):
 		os.remove(del_name)
 	res = [[0 for i in range(8)] for j in range(9)]
@@ -67,19 +68,8 @@ def draw_capital(file_path):
 	out.save(del_name)
 
 def like_main():
-	draw_headcount('C:\\Users\\tjqqd\\Documents\\Visual Studio 2017\\Projects\\test\\test\\headcount.txt')
-	draw_capital('C:\\Users\\tjqqd\\Documents\\Visual Studio 2017\\Projects\\test\\test\\capital.txt')
-	if getattr(sys,'frozen',False):
-		ctypes.windll.kernel32.SetDllDirectoryW('C:\\Users\\tjqqd\\AppData\\Roaming\\pyinstaller\\bincache00_py36_64bit')  
-		# Init code to load external dll  
-		ctypes.CDLL('mkl_avx2.dll')  
-		ctypes.CDLL('mkl_def.dll')  
-		ctypes.CDLL('mkl_vml_avx2.dll')  
-		ctypes.CDLL('mkl_vml_def.dll')  
-		
-		# Restore dll search path.  
-		ctypes.windll.kernel32.SetDllDirectoryW(sys._MEIPASS)  
-
+	draw_headcount('.\\headcount.txt')
+	draw_capital('.\\capital.txt')
 
 if __name__ == '__main__':
 	like_main()

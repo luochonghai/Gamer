@@ -4,18 +4,16 @@ using namespace std;
 void headcount_chart(Controller* controller, Player* players,Robot** rob)
 {
 	//1.write data to headcount.txt
-	system("cd C:\\Users\\tjqqd\\Documents\\Visual Studio 2017 & DEL /f Projects\\test\\test\\headcount.txt");
 	ofstream headtxt;
-	headtxt.open("C:\\Users\\tjqqd\\Documents\\Visual Studio 2017\\Projects\\test\\test\\headcount.txt", ios::out | ios::app);
+	headtxt.open(".\\headcount.txt", ios::out);
 	auto charts = controller->get_chart();
 	for (int i = 0; i < MW_LEN; ++i)
 		headtxt << charts[i] << " ";
 	headtxt.close();
 
 	//2.write data to capital.txt
-	system("cd C:\\Users\\tjqqd\\Documents\\Visual Studio 2017 & DEL /f Projects\\test\\test\\capital.txt");
 	ofstream capi_txt;
-	capi_txt.open("C:\\Users\\tjqqd\\Documents\\Visual Studio 2017\\Projects\\test\\test\\capital.txt", ios::out | ios::app);
+	capi_txt.open(".\\capital.txt", ios::out);
 	//player data
 	int player_cap = players->get_score();
 	auto player_history = players->read_hostory();
@@ -50,9 +48,10 @@ void headcount_chart(Controller* controller, Player* players,Robot** rob)
 	//pFunc = PyObject_GetAttrString(pModule, "like_main");
 	//PyEval_CallObject(pFunc, NULL);
 
-
+	WinExec(".\\pychart.exe",SW_HIDE);
 	//3.2 execute ./pychart.exe
-	system("cd C:\\Users\\tjqqd\\Documents\\Visual Studio 2017 & cd Projects\\test\\test\\dist & ./pychart.exe");
+	//system(".\\pychart.exe");
+	//system("cd C:\\Users\\tjqqd\\Documents\\Visual Studio 2017 & cd Projects\\test\\test\\dist & ./pychart.exe");
 	//finish the invoking process
 
 }
